@@ -2,6 +2,7 @@
   "name": "tractacity-v1",
   "version": "0.1.0",
   "private": true,
+  "main": "./src/Server/server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",

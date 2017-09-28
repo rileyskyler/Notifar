@@ -1,0 +1,1 @@
+INSERT INTO messages (to_, from_, message) VALUES ($1, $2, $3);

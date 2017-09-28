@@ -1,27 +1,33 @@
 const http = require('http');
-const express = require('express');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const bodyParser = require('body-parser');
-
 const app = express();
-
-
-///
-const cors = require('cors');
 const massive = require('massive');
 require('dotenv').config()
+const controller = require('./controllers/message_controller')
 
-//
-// app.use(bodyParser());
 
-// app.use(bodyParser.urlencoded());
-// app.use(bodyParser.json());
+
+
+
+
+const express = require('express');
+app.use( cors() );
+massive ( process.env.CONNECTION_STRING).then (dbInstance => app.set('db', dbInstance) );
+
+dbInstance.new_sms()
+.then( message => console.log( message ))
+.catch( err => console.log( err ) );
+
+
+
 
 app.use(bodyParser.urlencoded({
     extended: true
-  }));
-app.use( cors() );
-massive ( process.env.CONNECTION_STRING).then (dbInstance => app.set('db', dbInstance) );
+}));
+const cors = require('cors');
+
+
 
 app.post('/sms', (req, res) => {
   const twiml = new MessagingResponse();
@@ -37,3 +43,12 @@ app.post('/sms', (req, res) => {
 http.createServer(app).listen(1337, () => {
   console.log('Express server listening on port 1337');
 });
+
+
+
+
+
+
+// app.use(bodyParser());
+// app.use(bodyParser.urlencoded());
+// app.use(bodyParser.json());
