@@ -2,8 +2,10 @@
   "name": "tractacity-v1",
   "version": "0.1.0",
   "private": true,
-  "main": "./src/Server/server.js",
+  "main": "./Server/server.js",
+  "proxy": "http://localhost:1337",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.15.5",
@@ -21,6 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon --watch Server"
   }
 }
+

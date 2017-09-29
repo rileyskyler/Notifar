@@ -30,7 +30,7 @@ export default function(){
         <Route component={ ActivateDevice }  path="/activate/device"/>
         <Route component={ ActivateLocator }  path="/activate/locator"/>
         <Route component={ Locate }  path="/locate"/>
-        <Route component={ Settings }  path="/Locator/Settings.js"/>
+        {/* <Route component={ Settings }  path="/Locator/Settings"/> */}
     </Switch>
     )
 }

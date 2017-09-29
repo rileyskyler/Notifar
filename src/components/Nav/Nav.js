@@ -4,7 +4,7 @@ import './nav.css';
 
 export default function Nav() {
 	return (
-		<nav className="nav">
+		<div className="nav">
 			<div>
                 <ul>
                     <li>Noti·far</li>
@@ -12,7 +12,7 @@ export default function Nav() {
                     <li>Activate</li>
                 </ul>
             </div>
-		</nav>
+		</div>
 	);
 }
 
