@@ -31,7 +31,7 @@ class Map extends Component {
   render() {
     //   var location = '33.449891,-112.074829';
     var location = this.state.coordinates;
-    const mapLink = `https://www.google.com/maps/embed/v1/search?key=AIzaSyDF17p6r1DQOXIGWd02-VaBwgzqxF2Cqas&q=${location}`;
+    const mapLink = `https://www.google.com/maps/embed/v1/search?key=AIzaSyDF17p6r1DQOXIGWd02-VaBwgzqxF2Cqas&q=${location}&maptype=roadmap`;
     return (
         <iframe className='map'
             frameBorder="0" style={{border:0}}

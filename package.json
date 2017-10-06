@@ -11,6 +11,10 @@
     "express": "^4.15.5",
     "google-map-react": "^0.24.0",
     "massive": "^4.2.0",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.1",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.0",
     "react": "^15.6.2",
     "react-browser-router": "^1.0.6",
     "react-dom": "^15.6.2",
@@ -20,11 +24,12 @@
     "react-scripts": "1.0.13"
   },
   "scripts": {
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "server": "nodemon --watch Server"
   }
 }
-
