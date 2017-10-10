@@ -35,15 +35,15 @@ module.exports = {
 
     // //FROM DATABASE
 
-    // //Retrieve location data from database
-    // getUserCurrentLocation: ( req, res, next ) => {
-    //     console.log('this test')
-    //     const dbInstance = req.app.get('db');
+    //Retrieve location data from database
+    getUserCurrentLocation: ( req, res, next ) => {
+        console.log('this test')
+        const dbInstance = req.app.get('db');
   
-    //   dbInstance.user_current_location()
-    //     .then( (cl) => res.status(200).send(cl[0].message) )
-    //     .catch( () => res.status(500).send() );
-    // },
+      dbInstance.user_current_location()
+        .then( (cl) => res.status(200).send(cl[0]) )
+        .catch( () => res.status(500).send() );
+    },
 
     // getUserLocationHistory: ( req, res, next ) => {
     //     console.log('this test')

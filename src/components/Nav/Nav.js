@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import './nav.css';
+// import './nav.css';
 
 export default function Nav() {
 	return (

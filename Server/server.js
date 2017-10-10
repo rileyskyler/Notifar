@@ -7,7 +7,7 @@ const controller = require('./controllers/controller')
 const session = require('express-session')
 const passport = require('passport')
 const Auth0Strategy = require('passport-auth0')
-// const cors = require('cors');
+const cors = require('cors');
 const massive = require('massive');
 
 
@@ -40,7 +40,7 @@ passport.use( new Auth0Strategy(
     domain:       process.env.AUTH_DOMAIN,
     clientID:     process.env.AUTH_CLIENT_ID,
     clientSecret: process.env.AUTH_CLIENT_SECRET,
-    callbackURL:  'http://localhost:1337/auth'
+    callbackURL:  'http://localhost:1337/auth/callback'
   },
   function(accessToken, refreshToken, extraParams, profile, done) {
     // console.log(profile);
@@ -55,11 +55,12 @@ passport.use( new Auth0Strategy(
         
         if (user[0]) {
             console.log('found user');
-            done(null, user[0].id)
+            console.log(user[0].userid)
+            done(null, user[0].userid)
         } else {
             // console.log('creating new user');
             db.create_user([profile.identities[0].user_id, profile.displayName, profile.emails[0].value, profile.picture]).then( user => {
-                console.log(user[0])
+                console.log('green', user[0])
                 done(null, user[0].UserId)
             })
         }
@@ -68,15 +69,21 @@ passport.use( new Auth0Strategy(
 
 } 
 ))
+
 //Auth0
-passport.serializeUser( (user, done) => {
-  // const { _json } = user;
-  // done(null, { clientID: _json.clientID, email: _json.email, name: _json.name});
-  done(null, user)
+passport.serializeUser( (userId, done) => {
+  console.log('serializing user')
+  console.log('userID', userId)
+  done(null, userId)
 });
 
-passport.deserializeUser( (obj, done) => {
-  done(null, obj);
+passport.deserializeUser( (userId, done) => {
+    console.log('deserializing')
+    app.get('db').current_user([userId]).then(user => {
+        console.log(user);
+        console.log(user);
+        done(null, user[0]);
+    })
 });
 ///
 
@@ -84,7 +91,7 @@ passport.deserializeUser( (obj, done) => {
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
     successRedirect: 'http://localhost:3000/#/',  // send to front end port
-    failureRedirect: '/auth'
+    failureRedirect: 'http://google.com'
 }))
 app.get('/auth/user', passport.authenticate('auth0'), (req, res) => {
     // console.log('session', req.session);
@@ -95,10 +102,10 @@ app.get('/auth/user', passport.authenticate('auth0'), (req, res) => {
         return res.status(200).send(req.user)
     }
 })
-app.get('/auth/logout', (req, res) => {
-    req.logOut()
-    res.redirect(302, 'http://localhost:3000/')
-})
+// app.get('/auth/logout', (req, res) => {
+//     req.logOut()
+//     res.redirect(302, 'http://localhost:3000/')
+// })
 //
 
 // app.use(bodyParser.urlencoded());
@@ -114,7 +121,7 @@ app.post('/sms', controller.incomingSMS);
 
 // app.get('/createUser', controller.createUser)
 
-// app.get('/getUserCurrentLocation', controller.getCurrentLocation)
+app.get('/getUserCurrentLocation', controller.getUserCurrentLocation)
 // app.get('/getUserLocationHistory', controller.getCurrentLocation)
 // app.get('/getUser', controller.getUser)
 // app.get('/activateDevice', controller.activateDevice)

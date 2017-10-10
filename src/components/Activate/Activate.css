@@ -1,0 +1,11 @@
+.activate-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.A-main-content {
+    height: 80%;
+    width: 80%;
+    background: gray;
+}
