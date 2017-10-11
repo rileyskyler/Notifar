@@ -122,7 +122,9 @@ app.post('/sms', controller.incomingSMS);
 // app.get('/createUser', controller.createUser)
 
 app.get('/getUserCurrentLocation', controller.getUserCurrentLocation)
-// app.get('/getUserLocationHistory', controller.getCurrentLocation)
+
+
+app.get('/getUserLocationHistory', controller.getUserLocationHistory)
 // app.get('/getUser', controller.getUser)
 // app.get('/activateDevice', controller.activateDevice)
 // app.get('/activateLocator', controller.activateLocator)

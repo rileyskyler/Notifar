@@ -45,14 +45,14 @@ module.exports = {
         .catch( () => res.status(500).send() );
     },
 
-    // getUserLocationHistory: ( req, res, next ) => {
-    //     console.log('this test')
-    //     const dbInstance = req.app.get('db');
+    getUserLocationHistory: ( req, res, next ) => {
+        console.log('this test')
+        const dbInstance = req.app.get('db');
   
-    //   dbInstance.user_current_location()
-    //     .then( (cl) => res.status(200).send(cl[0].message) )
-    //     .catch( () => res.status(500).send() );
-    // },
+      dbInstance.user_location_history()
+        .then( (cl) => res.status(200).send(cl) )
+        .catch( () => res.status(500).send() );
+    },
 
     //     //Account Creation
 
