@@ -18,7 +18,7 @@ class Locate extends Component {
  
   render() {
     // console.log(this.props)
-    const mapLink = `https://www.google.com/maps/embed/v1/search?key=AIzaSyDF17p6r1DQOXIGWd02-VaBwgzqxF2Cqas&q=${this.props.currentLocation.latitude},${this.props.currentLocation.longitude}&maptype=roadmap`;
+    const mapLink = `https://www.google.com/maps/embed/v1/search?key=AIzaSyDF17p6r1DQOXIGWd02-VaBwgzqxF2Cqas&q=${this.props.currentLocation.latitude || ''},${this.props.currentLocation.longitude || ''git}&maptype=roadmap`;
     return (
      <div className='L-page'>
 
