@@ -121,7 +121,7 @@ doAllThese(param1) {
         <div className='L-sidebar'>
           <div className='L-selector'>
             
-          <div className='L-select'id={'button' + this.state.currentLocationButton % 2}  onClick={ () => this.doAllThese("currentLocation")}>Current Location <br/>
+          <div className='L-select'id={'button' + this.state.currentLocationButton % 2}  onClick={ () => this.doAllThese("currentLocation")}>Locate<br/>
           <div id='L-button-div'></div>
           <br />
           <span>{this.props.currentLocation.latitude},{this.props.currentLocation.longitude}</span>

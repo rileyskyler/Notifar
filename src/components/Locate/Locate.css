@@ -16,9 +16,8 @@
 .L-sidebar {
     height: 100%;
     width: 25%;
-    background-color: #FFFFFF;
+    background-color: #00FF0D;
     overflow: scroll;
-    background-color: #FFFFFF;
     display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -72,7 +71,7 @@
 #L-select {
     border-radius: 0px;
     border: 1px solid black;
-    background-color: white;
+    background-color: #7D7070;
     font-size: 20px;
     padding-top: 10px;
     margin: 10px;
@@ -82,7 +81,7 @@
 .L-select {
     border-radius: 0px;
     border: 1px solid black;
-    background-color: white;
+    background-color: #7B00FF;
     font-size: 20px;
     padding-top: 10px;
     margin: 10px;
@@ -105,7 +104,7 @@
 	justify-content: flex-start;
 	align-items: stretch;
     align-content: stretch;
-    background-color: #FFFFFF;
+    background-color: #D70F0F;
     
 }
 
