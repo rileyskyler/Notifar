@@ -6,6 +6,7 @@
 -- ORDER BY id
 -- DESC LIMIT 1
 
+
 SELECT latitude, longitude
 FROM locations
 ORDER BY id

@@ -7,16 +7,17 @@ const controller = require('./controllers/controller')
 const session = require('express-session')
 const passport = require('passport')
 const Auth0Strategy = require('passport-auth0')
+const KeyGenerator = require('uuid-key-generator')
 const cors = require('cors');
 const massive = require('massive');
 
 
-// app.use( cors() );
 // const app = module.exports = express();
 
 // app.use(bodyParser.urlencoded({
     
     const app = express();
+    // app.use( cors() );
     //   extended: true
     // }));
     app.use( bodyParser() );
@@ -58,10 +59,11 @@ passport.use( new Auth0Strategy(
             console.log(user[0].userid)
             done(null, user[0].userid)
         } else {
+            var keygen = new KeyGenerator(256, KeyGenerator.BASE36)
             // console.log('creating new user');
-            db.create_user([profile.identities[0].user_id, profile.displayName, profile.emails[0].value, profile.picture]).then( user => {
+            db.create_user([profile.identities[0].user_id, profile.displayName, profile.emails[0].value, profile.picture, keygen.generateKey()]).then( user => {
                 console.log('green', user[0])
-                done(null, user[0].UserId)
+                done(null, user[0].userId)
             })
         }
     }).catch(err=> console.log(err))
@@ -88,14 +90,15 @@ passport.deserializeUser( (userId, done) => {
 ///
 
 
+
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/',  // send to front end port
+    successRedirect: 'http://localhost:3000/#/locate',  // send to front end port
     failureRedirect: 'http://google.com'
 }))
-app.get('/auth/user', passport.authenticate('auth0'), (req, res) => {
+app.get('/auth/user', (req, res) => {
     // console.log('session', req.session);
-    // console.log('req.user', req.user);
+    console.log('endpoint hit!')
     if (!req.user) {
         return res.status(404).send('User not found')
     } else {

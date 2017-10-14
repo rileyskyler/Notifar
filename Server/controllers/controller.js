@@ -54,6 +54,15 @@ module.exports = {
         .catch( () => res.status(500).send() );
     },
 
+    getUserLocationId: (req, res, next) => {
+      // console.log('getUserLocation runnin')
+      const dbInstance = req.app.get('db');
+
+      dbInstance.get_user_location_id()
+        .then( (id) => req.app.get('db') )
+        .catch( () => res.status(500).send() );
+    }
+
     //     //Account Creation
 
     // createUser: ( req, res, next ) => {

@@ -12,12 +12,10 @@ export default function Landing() {
 					·
 					</div>
 					<div className='right-nav'>
-					<button className='nav-button'>Login</button>
-					<button className='nav-button'>Register</button>
-					<button className='nav-button'>Activate</button>
-
+						<a href='http://localhost:1337/auth'>
+							<button className='nav-button'>test</button>
+						</a>
 					</div>
-					{/* <button className='nav-button'>Login</button> */}
 				</div>
 			</div>
 			<div className='landing-p1'>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Map from '../Map/Map.js'
 import './Locate.css'
-import { connect } from "react-redux";
- 
+import { connect } from "react-redux" 
 import axios from 'axios';
-import {updateCurrentLocation, updateLocationHistory} from '../../ducks/reducer'
+import {updateCurrentLocation, updateLocationHistory, updateProfilePhoto, updateUserName} from '../../ducks/reducer'
 
 class Locate extends Component {
   constructor() {
@@ -14,6 +13,7 @@ class Locate extends Component {
       currentLocationButton: -1,
       locationHistoryButton: -1
     }
+
 }
 
 buttonClicked(param2) {
@@ -54,6 +54,7 @@ buttonClicked(param2) {
 
 
 //From onClicks, takes in a parameter for the setState switch statement
+
 doAllThese(param1) {
   console.log('do All these:', param1)
   switch (param1) {
@@ -76,12 +77,28 @@ doAllThese(param1) {
   console.log('worked',this.props.locationHistory[0]);
 }
  
+componentDidMount() {
+  console.log('Component DID MOUNT!')
+
+
+  axios.get('/auth/user').then((response) => {
+    console.log(response)
+    this.props.updateProfilePhoto(response.data.profilephoto)
+    console.log(this.props.profilePhoto)
+    
+    this.props.updateUserName(response.data.username)
+
+  }).catch((err) => {
+    console.log(err)
+  })
+
+}
 
   render() {
     //Test
     // var locationArray = this.props.locationHistory?: this.props.locationHistory[0].latitude: '';
 
-    console.log(this.props.locationHistory[0])
+  
 
 
     if (this.props.locationHistory[0]) {
@@ -115,12 +132,19 @@ doAllThese(param1) {
          <div className='logo'>
 						<span className='text'>Noti</span><span className='red'>·</span><span className='text'>Far</span>
 					</div>
+         <div>
+         <img className='profile-photo'src={this.props.profilePhoto}/>
+        <span>{this.props.userName}</span>
+         </div>
          </div>
        </nav>
        <div className='L-main-content'>
         <div className='L-sidebar'>
           <div className='L-selector'>
-            
+          <div className='L-select'>
+            username
+          </div>
+
           <div className='L-select'id={'button' + this.state.currentLocationButton % 2}  onClick={ () => this.doAllThese("currentLocation")}>Locate<br/>
           <div id='L-button-div'></div>
           <br />
@@ -160,7 +184,7 @@ doAllThese(param1) {
 }
 
 function mapStateToProps( state ) {
-	return {currentLocation: state.currentLocation, locationHistory: state.locationHistory};
+	return {currentLocation: state.currentLocation, locationHistory: state.locationHistory, profilePhoto: state.profilePhoto, userName: state.userName};
 }
 
-export default connect (mapStateToProps, {updateCurrentLocation, updateLocationHistory}) (Locate);
+export default connect (mapStateToProps, {updateCurrentLocation, updateLocationHistory, updateProfilePhoto, updateUserName}) (Locate);
