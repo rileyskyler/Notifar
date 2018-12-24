@@ -1,35 +1,31 @@
 {
-  "name": "tractacity-v1",
-  "version": "0.1.0",
-  "private": true,
-  "main": "./Server/server.js",
-  "proxy": "http://localhost:1337",
-  "dependencies": {
-    "axios": "^0.16.2",
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
-    "express": "^4.15.5",
-    "google-map-react": "^0.24.0",
-    "massive": "^4.2.0",
-    "node-sass-chokidar": "0.0.3",
-    "npm-run-all": "^4.1.1",
-    "passport": "^0.4.0",
-    "passport-auth0": "^0.6.0",
-    "react": "^15.6.2",
-    "react-browser-router": "^1.0.6",
-    "react-dom": "^15.6.2",
-    "react-google-maps": "^8.3.0",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.13"
-  },
+  "name": "notifar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.tsx",
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start": "react-scripts start",
-    "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "server": "nodemon --watch Server"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rileyskyler/Notifar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rileyskyler/Notifar/issues"
+  },
+  "homepage": "https://github.com/rileyskyler/Notifar#readme",
+  "dependencies": {
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.28.2"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.2.2"
   }
 }
